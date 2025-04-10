@@ -288,7 +288,6 @@ graph TD
 ```
 ```
 
----
 
 ## 📌 General System Design Principles Applied
 
@@ -321,6 +320,5 @@ graph TD
 - Background jobs decouple user experience from system load
 - All steps logged for traceability & audit
 
----
 
 You're now ready to build and iterate. 🚀
