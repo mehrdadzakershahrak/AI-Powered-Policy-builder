@@ -1,6 +1,6 @@
 # 🧭 System Design Framework (Reusable Guide)
 
-Use this framework as a repeatable guide to design backend systems — from whiteboard interviews to real-world architecture planning.
+Use this framework checklist as a repeatable guide to design backend systems — from whiteboard drawings to real-world architecture planning.
 
 ---
 
@@ -99,15 +99,20 @@ Use this framework as a repeatable guide to design backend systems — from whit
 
 ---
 
-## 10. 🧠 Communication Summary (for Interviews)
+## 10. 🧠 Checklist Summary
 
-When explaining your design:
-- Start with use cases and users
-- Outline architecture progressively
-- Justify each major design choice
-- Mention trade-offs
-- Be ready to zoom in (deep dive) into a few key areas
+Use this as a final checklist before you present or review a system design.
+	•	Did I clearly define the system’s purpose and key use cases?
+	•	Did I identify all the primary user roles?
+	•	Did I specify both functional and non-functional requirements?
+	•	Did I sketch or describe a high-level architecture?
+	•	Did I justify each key design decision (DB type, scaling, queues, etc.)?
+	•	Did I mention trade-offs or alternate options?
+	•	Did I highlight potential bottlenecks or failure scenarios?
+	•	Did I think about monitoring, observability, and security?
+	•	Am I prepared to go deeper on any specific area if asked?
+
 
 ---
 
-Use this guide across multiple projects or interviews to maintain a sharp, methodical approach to system design.
+Use this checklist across projects to maintain a sharp, methodical approach to system design.
