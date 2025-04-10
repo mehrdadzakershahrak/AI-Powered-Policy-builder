@@ -1,4 +1,4 @@
-# Smart Insurance Policy Creator using AI (Ruby on Rails Backend)
+# AI-Powered Policy Builder (Ruby on Rails Backend)
 
 ## 🧠 Overview
 A scalable backend system that creates personalized insurance policies using AI. The system integrates a Rails API with background job processing, PDF generation, and AI-powered policy drafting.
@@ -11,13 +11,13 @@ A scalable backend system that creates personalized insurance policies using AI.
 graph TD
   A[User Input Form] --> B[Rails API Backend]
   B --> C[Policy Generation Service]
-  C --> D[AI Service (LLM)]
+  C --> D[AI Service - LLM]
   C --> E[Risk Assessment Engine]
   C --> F[PDF Generator]
-  F --> G[Object Storage (S3)]
-  B --> H[PostgreSQL (Users & Policies)]
-  B --> I[Redis + Sidekiq (Jobs)]
-  B --> J[Admin Dashboard / API Consumer]
+  F --> G[Object Storage - S3]
+  B --> H[PostgreSQL - Users & Policies]
+  B --> I[Redis + Sidekiq - Jobs]
+  B --> J[Admin Dashboard or API Consumer]
 ```
 
 ---
@@ -25,15 +25,22 @@ graph TD
 ## 🚀 How to Run Locally
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/smart_insurance_ai.git
-cd smart_insurance_ai
+git clone https://github.com/YOUR_USERNAME/ai_policy_builder.git
+cd ai_policy_builder
 bundle install
 yarn install # if using frontend too
-dotenv rails db:setup
-foreman start # starts web and worker
+cp .env.example .env
+rails db:setup
+foreman start # starts web and worker (requires Procfile)
 ```
 
-> You'll need a `.env` file with your API keys and Redis credentials.
+> You'll need a `.env` file with your API keys and Redis credentials. Example:
+
+```dotenv
+OPENAI_API_KEY=your-key-here
+REDIS_URL=redis://localhost:6379
+SECRET_KEY_BASE=generate-with-rails-secret
+```
 
 ---
 
