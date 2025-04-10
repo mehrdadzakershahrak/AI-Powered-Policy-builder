@@ -1,7 +1,11 @@
-# AI-Powered Policy Builder (Ruby on Rails Backend)
+# AI-Powered Policy Builder & Regulation Tracker (Ruby on Rails Backend)
 
 ## 🧠 Overview
-A scalable backend system that creates personalized insurance policies using AI. The system integrates a Rails API with background job processing, PDF generation, and AI-powered policy drafting.
+A scalable backend system that creates personalized insurance policies using AI, and now includes a powerful regulatory monitoring feature. The system:
+- Uses AI to generate and customize insurance policies.
+- Periodically monitors external sources for rule/regulation updates.
+- Summarizes changes and notifies domain experts.
+- Optionally recommends policy adjustments based on legal/regulatory changes.
 
 ---
 
@@ -18,6 +22,15 @@ graph TD
   B --> H[PostgreSQL - Users & Policies]
   B --> I[Redis + Sidekiq - Jobs]
   B --> J[Admin Dashboard or API Consumer]
+
+  subgraph Regulation Tracker
+    X[External Rule Sources] --> Y[Regulation Crawler]
+    Y --> Z[AI Summarizer]
+    Z --> AA[Change Detector]
+    AA --> AB[Alert Dispatcher]
+    AB --> AC[Domain Experts]
+    AA --> C
+  end
 ```
 
 ---
@@ -73,6 +86,9 @@ Send clause or risk preference for re-generation
 
 POST /finalize
 Locks and archives the policy document
+
+POST /regulation-crawl
+Triggers external rule crawler (admin only)
 ```
 
 ---
@@ -122,8 +138,14 @@ app/
 ├── models/
 ├── services/
 │   └── ai_policy_generator.rb
+│   └── regulation/
+│       ├── crawler.rb
+│       ├── summarizer.rb
+│       ├── change_detector.rb
+│       └── alert_dispatcher.rb
 ├── jobs/
 │   └── policy_generator_job.rb
+│   └── regulation_monitor_job.rb
 ├── policies/ # Pundit
 ├── pdf_templates/
 config/
@@ -151,6 +173,7 @@ Includes model, request, and service layer specs.
 - Voice-to-policy transcription
 - Admin dashboard with analytics
 - Policy versioning / diff viewer
+- Regulation dashboard and notification center
 
 ---
 
@@ -173,6 +196,7 @@ Includes model, request, and service layer specs.
 
 ## 🏁 Status
 ✅ MVP complete — AI policy generation with customizable clauses, PDF output, and secure user handling.
+🚧 Regulatory monitoring system now integrated — crawling, summarization, change detection and expert notifications.
 
 ---
 
@@ -215,6 +239,7 @@ rails generate pundit:install
 ### 4. Create Services
 - `AI::PolicyGenerator` – talks to AI APIs
 - `PolicyGeneratorJob` – background async processing
+- `Regulation::Crawler`, `Summarizer`, `ChangeDetector`, `AlertDispatcher`
 
 ### 5. Configure PDF Generator
 Choose WickedPDF or Prawn:
@@ -229,6 +254,7 @@ Implement:
 - `GET /policy/:id`
 - `POST /feedback`
 - `POST /finalize`
+- `POST /regulation-crawl`
 
 ### 7. Run and Test
 ```bash
@@ -250,6 +276,15 @@ graph TD
   B --> H[PostgreSQL - Users & Policies]
   B --> I[Redis + Sidekiq - Jobs]
   B --> J[Admin Dashboard or API Consumer]
+
+  subgraph Regulation Tracker
+    X[External Rule Sources] --> Y[Regulation Crawler]
+    Y --> Z[AI Summarizer]
+    Z --> AA[Change Detector]
+    AA --> AB[Alert Dispatcher]
+    AB --> AC[Domain Experts]
+    AA --> C
+  end
 ```
 ```
 
