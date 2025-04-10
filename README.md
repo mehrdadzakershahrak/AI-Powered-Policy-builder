@@ -176,4 +176,81 @@ Includes model, request, and service layer specs.
 
 ---
 
-Feel free to fork this repo and extend the AI logic or build a polished frontend on top!
+## 🛠️ Replication Guide (From Scratch)
+
+### 1. Initialize Rails API Project
+```bash
+rails new ai_policy_builder --api -d postgresql
+cd ai_policy_builder
+```
+
+### 2. Add Core Gems
+To your `Gemfile`:
+```ruby
+gem 'devise'
+gem 'jwt'
+gem 'pundit'
+gem 'sidekiq'
+gem 'redis'
+gem 'dotenv-rails'
+gem 'httparty'
+gem 'wicked_pdf' # or 'prawn'
+gem 'rspec-rails'
+gem 'factory_bot_rails'
+gem 'rswag'
+```
+Then:
+```bash
+bundle install
+rails generate rspec:install
+rails generate devise:install
+rails generate pundit:install
+```
+
+### 3. Set Up Your Models
+- `User` (Devise-based)
+- `Policy` (JSONB or structured fields)
+- Optional: `RiskProfile`
+
+### 4. Create Services
+- `AI::PolicyGenerator` – talks to AI APIs
+- `PolicyGeneratorJob` – background async processing
+
+### 5. Configure PDF Generator
+Choose WickedPDF or Prawn:
+```bash
+rails generate wicked_pdf
+```
+Use ERB or HAML templates for rendering.
+
+### 6. Routes & Controllers
+Implement:
+- `POST /generate-policy`
+- `GET /policy/:id`
+- `POST /feedback`
+- `POST /finalize`
+
+### 7. Run and Test
+```bash
+rails db:create db:migrate
+foreman start
+```
+
+### 8. Use Mermaid Diagram in README
+Paste this in:
+```markdown
+```mermaid
+graph TD
+  A[User Input Form] --> B[Rails API Backend]
+  B --> C[Policy Generation Service]
+  C --> D[AI Service - LLM]
+  C --> E[Risk Assessment Engine]
+  C --> F[PDF Generator]
+  F --> G[Object Storage - S3]
+  B --> H[PostgreSQL - Users & Policies]
+  B --> I[Redis + Sidekiq - Jobs]
+  B --> J[Admin Dashboard or API Consumer]
+```
+```
+
+You're now ready to build and iterate. 🚀
