@@ -287,5 +287,39 @@ graph TD
   end
 ```
 ```
+---
+
+## 📌 General System Design Principles Applied
+
+### ✅ Functional Requirements
+- Generate personalized policies
+- Summarize new rules and regulations
+- Notify experts automatically
+- Download finalized PDFs securely
+
+### ✅ Non-Functional Requirements
+- **Scalability**: Sidekiq jobs, Redis queues, modular services
+- **Security**: JWT, role-based access, encrypted storage
+- **Performance**: Async AI calls, low-latency PDF serving
+- **Availability**: Retry logic, queue separation, stateless API
+- **Maintainability**: Service-based logic, clean controllers
+
+### ✅ Design Patterns Used
+- **Service Objects** (business logic extraction)
+- **Jobs & Background Workers** (Sidekiq)
+- **Separation of Concerns** (controllers, services, models, jobs)
+- **Policy Objects** (via Pundit)
+
+### ✅ AI Integration Strategy
+- Prompt templates for consistency
+- LLM used via HTTP (OpenAI or hosted model)
+- Regulation updates pre-processed and diffed
+
+### ✅ Communication
+- Alerts via email, Slack, or in-app messages
+- Background jobs decouple user experience from system load
+- All steps logged for traceability & audit
+
+---
 
 You're now ready to build and iterate. 🚀
